@@ -238,10 +238,13 @@ services:
       volumes:
         - ${DATA_SAVE_PATH}/mysql:/var/lib/mysql
         - ${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
+      volumes_from:
+        - applications
       ports:
         - "${MYSQL_PORT}:3306"
       networks:
         - backend
+        - frontend
 
 ### Percona Container #########################################
 
@@ -682,7 +685,7 @@ services:
       networks:
         - frontend
         - backend
-        
+
 ### Solr Container #########################################
 
     solr:
